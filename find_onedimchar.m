@@ -25,12 +25,10 @@ function find_onedimchar(C,ell : primes_bound := 3000);
     while #X gt 2 do
         if cond mod p ne 0 then
             Jp := BaseExtend(J,GF(p));
-            print "Jp:", Jp;
             invcharpol := EulerFactor(Jp);   
             charpol := P_ell ! Reverse(Coefficients(invcharpol));
             eigvals_rhoell_frobp := [r[1] : r in Roots(charpol)]; /* roots(charpol) returns <root, multiplicity> */
             X := [x : x in X | Evaluate(&*[(G.i)^(x[i]) : i in [1..n]],p) in eigvals_rhoell_frobp];
-            print "X: ", X;
         end if;
         p := NextPrime(p);
         if p gt primes_bound then
